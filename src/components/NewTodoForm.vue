@@ -10,6 +10,8 @@ const handleSubmit = () => {
   emit("addTodo", todoText.value);
   todoText.value = "";
 };
+
+defineExpose({ todoText });
 </script>
 
 <template>
@@ -21,10 +23,5 @@ const handleSubmit = () => {
       placeholder="What are you working on today..."
       class="w-full mt-2 px-4 py-4 outline outline-1 rounded-xl"
     />
-    <button
-      class="mt-4 bg-green-700 px-12 py-3 font-medium text-white rounded-md active:scale-[1.01]"
-    >
-      Submit
-    </button>
   </form>
 </template>

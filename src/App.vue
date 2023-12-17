@@ -6,6 +6,7 @@ import TodoList from "./components/TodoList.vue";
 import type { Todo } from "./types/index";
 
 const todos = ref<Todo[]>([]);
+const newTodoFormRef = ref<InstanceType<typeof NewTodoForm> | null>(null);
 
 const addTodo = (todoText: string) => {
   todos.value.push({ completed: false, id: nanoid(), task: todoText });
@@ -20,6 +21,10 @@ const checkTodo = (selectedTodoId: string) => {
     todo.id === selectedTodoId ? { ...todo, completed: !todo.completed } : todo
   );
 };
+
+const handleBtnSubmit = () => {
+  newTodoFormRef.value?.$emit("addTodo", newTodoFormRef.value.todoText);
+};
 </script>
 
 <template>
@@ -29,7 +34,15 @@ const checkTodo = (selectedTodoId: string) => {
     </h1>
     <p class="mt-1 text-lg text-center">Your Move to Master Your Tasks - Plan. Act. Conquer!</p>
     <div class="w-full max-w-3xl">
-      <NewTodoForm @add-todo="addTodo" />
+      <NewTodoForm @add-todo="addTodo" ref="newTodoFormRef" />
+      <div class="flex justify-center">
+        <button
+          class="mt-4 bg-green-700 px-12 py-3 font-medium text-white rounded-md active:scale-[1.01]"
+          @click="handleBtnSubmit"
+        >
+          Submit
+        </button>
+      </div>
       <div class="mt-8" v-if="todos.length > 0">
         <h4 class="text-lg">Your todos</h4>
         <TodoList :todos="todos" @check-todo="checkTodo" @delete-todo="deleteTodo" />
