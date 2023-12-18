@@ -3,3 +3,10 @@ export interface Todo {
   task: string
   completed: boolean
 }
+
+export interface TodoDTO {
+  id: string
+  todo: string
+  completed: boolean
+  userId: number
+}

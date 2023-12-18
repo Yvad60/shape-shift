@@ -6,22 +6,26 @@ const emit = defineEmits<{
 
 const todoText = ref("");
 
-const handleSubmit = () => {
-  emit("addTodo", todoText.value);
+const resetTodoText = () => {
   todoText.value = "";
 };
 
-defineExpose({ todoText });
+const handleSubmit = () => {
+  emit("addTodo", todoText.value);
+  resetTodoText();
+};
+
+defineExpose({ todoText, resetTodoText });
 </script>
 
 <template>
-  <form class="mt-10 flex flex-col items-center" @submit.prevent="handleSubmit">
-    <h5 class="text-lg self-start">Add new todo</h5>
+  <form class="flex flex-col items-center mt-10" @submit.prevent="handleSubmit">
+    <h5 class="self-start text-lg">Add new todo</h5>
     <input
       type="text"
       v-model.trim="todoText"
       placeholder="What are you working on today..."
-      class="w-full mt-2 px-4 py-4 outline outline-1 rounded-xl"
+      class="w-full px-4 py-4 mt-2 outline outline-1 rounded-xl"
     />
   </form>
 </template>
