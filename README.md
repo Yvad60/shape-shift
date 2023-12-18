@@ -1,2 +1,7 @@
-# shape-shift
-Built the same app with several frontend libraries as a challenge
+# Shape-shift
+
+Built the same app with different frontend libraries as a challenge.
+
+## Deployment links
+
+- [Vue js](https://shape-shift-git-vue-yvad60.vercel.app/)
