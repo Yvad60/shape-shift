@@ -10,7 +10,7 @@ defineEmits<{
 
 <template>
   <ul>
-    <li v-for="todo in todos" :key="todo.id" class="flex py-4 border-b gap-7 items-enter">
+    <li v-for="todo in todos" :key="todo.id" class="flex py-4 border-b gap-8 items-enter">
       <input
         :checked="todo.completed"
         @change="$emit('checkTodo', todo.id)"
